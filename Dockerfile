@@ -12,7 +12,7 @@ EXPOSE 8080
 
 # Set environment variables (replace with actual values in Render)
 ENV GEMINI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
-ENV GEMINI_KEY="YOUR_GEMINI_KEY_HERE"
+ENV GEMINI_KEY="AIzaSyDbONbGuUlhm4jW9ZfCqByEGs_2NLXeJp8"
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
