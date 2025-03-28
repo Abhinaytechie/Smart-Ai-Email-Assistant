@@ -1,18 +1,17 @@
 # Use OpenJDK 21 as the base image
-FROM openjdk:21-jdk-slim
+FROM openjdk:21
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the application JAR file to the container
-COPY target/email-ai-writer-0.0.1-SNAPSHOT.jar app.jar
+# Copy the project files
+COPY . .
 
-# Expose the port the app runs on
+# Build the application inside the container
+RUN ./mvnw clean package -DskipTests
+
+# Expose the port
 EXPOSE 8080
 
-# Set environment variables (replace with actual values in Render)
-ENV GEMINI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
-ENV GEMINI_KEY="AIzaSyDbONbGuUlhm4jW9ZfCqByEGs_2NLXeJp8"
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the JAR file
+CMD ["java", "-jar", "target/email-ai-writer-0.0.1-SNAPSHOT.jar"]
